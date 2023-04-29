@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="main (template, menu)" lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${title}" />
+
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}" />
+</head>
+<body>
+<header>
+    <nav class="container">
+        <a href="/">Главная</a>
+        <a href="/catalog">Каталог</a>
+        <a href="/catalog/add-new-product">Добавить товар</a>
+        <a href="/contacts">Контакты</a>
+    </nav>
+</header>
+<main>
+    <th:block th:insert="${template}" />
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

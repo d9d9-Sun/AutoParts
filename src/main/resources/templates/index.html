@@ -1,24 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title th:text="${title}" />
-
-    <link rel="stylesheet" th:href="@{/resources/css/style.css}" />
-</head>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout/main :: main (~{::body},'/')}" lang="ru">
 <body>
-    <header>
-        <nav>
-            <div>Главная</div>
-            <div>Каталог</div>
-        </nav>
-    </header>
-    <main class="container">
+    <div class="container">
         <h1>Auto Parts Store</h1>
 
-    </main>
-    <footer>
-
-    </footer>
+    </div>
 </body>
 </html>
