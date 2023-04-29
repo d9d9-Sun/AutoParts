@@ -9,4 +9,5 @@ public interface ProductDaoService {
     void addNewProduct(Product product);
     void deleteProductById(Long id);
     Product findProductById(Long id);
+    void updateProduct(Product product);
 }
