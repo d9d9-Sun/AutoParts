@@ -29,8 +29,9 @@ h1 {
 .products-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 15px;
 }
+
 
 .product-card {
     width: 32%;
