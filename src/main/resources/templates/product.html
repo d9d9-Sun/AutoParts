@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout/main :: main (~{::body},'catalog')}" lang="ru">
 <body>
-$END$
+<div class="container">
+    <h1 th:text="${product.productName}"/>
+    <div class="product">
+        <div class="product-card">
+            <div th:text="'Бренд: ' + ${product.productVendor}"></div>
+            <div th:text="'Описание: ' + ${product.productDescription}"></div>
+            <div th:text="'Цена: ' + ${product.productPrice}"></div>
+            <form th:action="@{'/catalog/delete-' + ${product.productId}}" method="post">
+                <input type="submit" value="Удалить товар">
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
