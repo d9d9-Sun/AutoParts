@@ -19,11 +19,13 @@ public class ProductController {
     public String catalog(Model model) {
         List<Product> productList = productDaoService.getAllProducts();
         model.addAttribute("productList", productList);
+        model.addAttribute("title", "Каталог запчастей");
         return "catalog";
     }
 
     @GetMapping("/catalog/add-new-product")
-    public String showAddNewProductForm(@ModelAttribute("product") Product product) {
+    public String showAddNewProductForm(Model model, @ModelAttribute("product") Product product) {
+        model.addAttribute("title", "Добавление нового товара");
         return "add-new-product";
     }
 
@@ -43,6 +45,7 @@ public class ProductController {
     public String showSingleProduct(@PathVariable("id") Long productId, Model model) {
         Product product = productDaoService.findProductById(productId);
         model.addAttribute("product", product);
+        model.addAttribute("title", product.getProductName());
         return "product";
     }
 
@@ -56,7 +59,26 @@ public class ProductController {
     public String productEdit(@PathVariable("id") Long productId, Model model) {
         Product product = productDaoService.findProductById(productId);
         model.addAttribute("product", product);
+        model.addAttribute("title", "Редактирование товара");
         return "product-edit";
     }
 
+    @PostMapping("/catalog/product-{id}/edit")
+    public String productUpdate(@PathVariable("id") Long productId,
+                                @RequestParam String productVendor,
+                                @RequestParam String productName,
+                                @RequestParam String productDescription,
+                                @RequestParam double productPrice,
+                                Model model) {
+
+        Product product = productDaoService.findProductById(productId);
+        product.setProductVendor(productVendor);
+        product.setProductName(productName);
+        product.setProductDescription(productDescription);
+        product.setProductPrice(productPrice);
+
+        productDaoService.updateProduct(product);
+
+        return "redirect:/catalog/product-{id}";
+    }
 }
