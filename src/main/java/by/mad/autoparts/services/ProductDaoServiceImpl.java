@@ -30,4 +30,10 @@ public class ProductDaoServiceImpl implements ProductDaoService {
         productRepository.deleteById(id);
     }
 
+    @Override
+    public Product findProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+
 }
