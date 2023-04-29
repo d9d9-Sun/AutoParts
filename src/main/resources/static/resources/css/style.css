@@ -25,3 +25,13 @@ nav.container {
 h1 {
     margin-bottom: 30px;
 }
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-card {
+    width: 32%;
+}
