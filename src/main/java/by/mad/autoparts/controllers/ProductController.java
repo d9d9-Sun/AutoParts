@@ -46,4 +46,9 @@ public class ProductController {
         return "product";
     }
 
+    @PostMapping("/catalog/delete-{id}")
+    public String deleteProduct(@PathVariable("id") Long productId) {
+        productDaoService.deleteProductById(productId);
+        return "redirect:/catalog";
+    }
 }
