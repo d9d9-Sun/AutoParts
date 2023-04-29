@@ -46,9 +46,17 @@ public class ProductController {
         return "product";
     }
 
-    @PostMapping("/catalog/delete-{id}")
+    @PostMapping("/catalog/product-{id}/delete")
     public String deleteProduct(@PathVariable("id") Long productId) {
         productDaoService.deleteProductById(productId);
         return "redirect:/catalog";
     }
+
+    @GetMapping("/catalog/product-{id}/edit")
+    public String productEdit(@PathVariable("id") Long productId, Model model) {
+        Product product = productDaoService.findProductById(productId);
+        model.addAttribute("product", product);
+        return "product-edit";
+    }
+
 }
