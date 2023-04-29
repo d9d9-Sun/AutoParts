@@ -3,11 +3,11 @@
 <body>
 <div class="container">
   <h1>Редактирование товара</h1>
-  <form th:action="@{'/catalog/product-' + ${product.productId}}" th:object="${product}" method="post">
-    <input type="text" name="product_vendor" th:value="*{productVendor}" placeholder="Производитель">
-    <input type="text" name="product_name" th:value="*{productName}" placeholder="Название">
-    <textarea name="product_description" th:text="*{productDescription}" placeholder="Описание"></textarea>
-    <input type="number" name="product_price"  th:value="*{productPrice}" placeholder="Цена" step=".01">
+  <form th:each="el : ${product}" method="post">
+    <input type="text" name="productVendor" th:value="${el.productVendor}" placeholder="Производитель">
+    <input type="text" name="productName" th:value="${el.productName}" placeholder="Название">
+    <textarea name="productDescription" th:text="${el.productDescription}" placeholder="Описание"></textarea>
+    <input type="number" name="productPrice"  th:value="${el.productPrice}" placeholder="Цена" step=".01">
     <button type="submit">Обновить</button>
   </form>
 </div>
