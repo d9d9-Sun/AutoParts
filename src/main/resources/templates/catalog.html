@@ -5,11 +5,12 @@
         <h1>Каталог запчастей</h1>
         <div class="products-list">
             <div th:if="${#lists.isEmpty(productList)}">Товаров не найдено.</div>
-            <div th:each="product : ${productList}">
+            <div class="product-card" th:each="product : ${productList}">
+                <h2 th:text="${product.productName}"></h2>
                 <div th:text="${product.productVendor}"></div>
-                <div th:text="${product.productName}"></div>
                 <div th:text="${product.productDescription}"></div>
                 <div th:text="${product.productPrice}"></div>
+                <a th:href="@{/catalog/product-{id}(id=${product.productId})}">Подробнее</a>
             </div>
         </div>
     </div>
