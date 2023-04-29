@@ -35,5 +35,10 @@ public class ProductDaoServiceImpl implements ProductDaoService {
         return productRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public void updateProduct(Product product) {
+        productRepository.save(product);
+    }
+
 
 }
