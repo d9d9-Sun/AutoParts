@@ -7,5 +7,5 @@ import java.util.List;
 public interface ProductDaoService {
     List<Product> getAllProducts();
     void addNewProduct(Product product);
-    void deleteProductById(long id);
+    void deleteProductById(Long id);
 }
