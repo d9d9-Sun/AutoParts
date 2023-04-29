@@ -12,4 +12,10 @@ public class MainController {
         model.addAttribute("title", "Auto Parts Store");
         return "index";
     }
+
+    @GetMapping("/contacts")
+    private String contactsPage(Model model) {
+        model.addAttribute("title", "Auto Parts Store - Contacts");
+        return "contacts";
+    }
 }
