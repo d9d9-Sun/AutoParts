@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${title}" />
+
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}" />
+</head>
+<body>
+<header>
+    <nav>
+        <div>Главная</div>
+        <div>Каталог</div>
+    </nav>
+</header>
+<main class="container">
+    <h1>Каталог запчастей</h1>
+    <div class="products-list">
+        <div th:each="product : ${productList}">
+            <div th:text="${product.vendor}"></div>
+            <div th:text="${product.name}"></div>
+            <div th:text="${product.description}"></div>
+            <div th:text="${product.price}"></div>
+        </div>
+    </div>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>
