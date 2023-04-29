@@ -4,11 +4,12 @@
     <div class="container">
         <h1>Каталог запчастей</h1>
         <div class="products-list">
+            <div th:if="${#lists.isEmpty(productList)}">Товаров не найдено.</div>
             <div th:each="product : ${productList}">
-                <div th:text="${product.vendor}"></div>
-                <div th:text="${product.name}"></div>
-                <div th:text="${product.description}"></div>
-                <div th:text="${product.price}"></div>
+                <div th:text="${product.productVendor}"></div>
+                <div th:text="${product.productName}"></div>
+                <div th:text="${product.productDescription}"></div>
+                <div th:text="${product.productPrice}"></div>
             </div>
         </div>
     </div>
