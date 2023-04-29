@@ -7,7 +7,7 @@
         <input type="text" name="product_vendor" th:field="*{productVendor}" placeholder="Производитель">
         <input type="text" name="product_name" th:field="*{productName}" placeholder="Название">
         <textarea name="product_description" th:field="*{productDescription}" placeholder="Описание"></textarea>
-        <input type="number" name="product_price"  th:field="*{productPrice}" placeholder="Цена">
+        <input type="number" name="product_price"  th:field="*{productPrice}" placeholder="Цена" step=".01">
         <button type="submit">Добавить</button>
     </form>
 </div>

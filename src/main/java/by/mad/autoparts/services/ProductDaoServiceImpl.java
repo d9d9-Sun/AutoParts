@@ -1,45 +1,33 @@
 package by.mad.autoparts.services;
 
 import by.mad.autoparts.models.Product;
+import by.mad.autoparts.repositories.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductDaoServiceImpl implements ProductDaoService {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final ProductRepository productRepository;
 
     @Override
     public List<Product> getAllProducts() {
-        List<Product> products = jdbcTemplate.query("SELECT * FROM products", (ResultSet rs, int rownum) -> {
-            Product product = new Product();
-
-            product.setProductId(rs.getLong("product_id"));
-            product.setProductVendor(rs.getString("product_vendor"));
-            product.setProductName(rs.getString("product_name"));
-            product.setProductDescription(rs.getString("product_description"));
-            product.setProductPrice(rs.getDouble("product_price"));
-
-            return product;
-        });
-        return products;
+        return productRepository.findAll();
     }
 
     @Override
     public void addNewProduct(Product product) {
-        productList.add(product);
-
+        productRepository.save(product);
     }
 
     @Override
     public void deleteProductById(Long id) {
-        productList.removeIf(productList -> productList.getProductId() == id);
+        productRepository.deleteById(id);
     }
 
 }
