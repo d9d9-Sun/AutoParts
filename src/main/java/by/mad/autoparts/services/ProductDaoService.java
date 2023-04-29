@@ -8,4 +8,5 @@ public interface ProductDaoService {
     List<Product> getAllProducts();
     void addNewProduct(Product product);
     void deleteProductById(Long id);
+    Product findProductById(Long id);
 }
