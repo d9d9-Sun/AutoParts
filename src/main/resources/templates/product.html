@@ -3,19 +3,26 @@
 <body>
 <div class="container">
     <h1 th:text="${product.productName}"/>
-    <div class="product">
-        <div class="single-product-card">
+
+    <div class="single-product-card">
+        <div class="single-product-img"><img th:src="${product.productImageLink}"></div>
+        <div class="single-product-meta">
             <div th:text="'Бренд: ' + ${product.productVendor}"></div>
-            <div th:text="'Описание: ' + ${product.productDescription}"></div>
-            <div th:text="'Цена: ' + ${product.productPrice}"></div>
-            <a th:href="@{'/catalog/product-' + ${product.productId} + '/edit'}">
-                <button>Редактировать товар</button>
-            </a>
-            <form th:action="@{'/catalog/product-' + ${product.productId} + '/delete'}" method="post">
-                <input type="submit" value="Удалить товар">
-            </form>
+            <div class="product-price" th:text="${product.productPrice} + 'BYN'"></div>
         </div>
     </div>
+
+    <div class="product-description" th:text="${product.productDescription}"></div>
+
+    <div class="product-controls">
+        <a th:href="@{'/catalog/product-' + ${product.productId} + '/edit'}">
+            <button>Редактировать товар</button>
+        </a>
+        <form th:action="@{'/catalog/product-' + ${product.productId} + '/delete'}" method="post">
+            <input type="submit" value="Удалить товар">
+        </form>
+    </div>
+
 </div>
 </body>
 </html>
