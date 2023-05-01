@@ -6,10 +6,12 @@
         <div class="products-list">
             <div th:if="${#lists.isEmpty(productList)}">Товаров не найдено.</div>
             <div class="product-card" th:each="product : ${productList}">
-                <h2 th:text="${product.productName}"></h2>
-                <div th:text="'Бренд ' + ${product.productVendor}"></div>
-                <div th:text="'Цена: ' + ${product.productPrice}"></div>
-                <a th:href="@{'/catalog/product-' + ${product.productId}}">Подробнее</a>
+                <a th:href="@{'/catalog/product-' + ${product.productId}}">
+                    <h2 th:text="${product.productName}"></h2>
+                    <div class="product-img"><img th:src="${product.productImageLink}"></div>
+                    <div class="product-vendor" th:text="'Бренд: ' + ${product.productVendor}"></div>
+                    <div class="product-price" th:text="${product.productPrice} + 'BYN'"></div>
+                </a>
             </div>
         </div>
     </div>
