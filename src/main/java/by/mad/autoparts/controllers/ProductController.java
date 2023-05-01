@@ -2,10 +2,12 @@ package by.mad.autoparts.controllers;
 
 import by.mad.autoparts.models.Product;
 import by.mad.autoparts.services.ProductDaoService;
+import by.mad.autoparts.storage.FileSystemStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -14,6 +16,12 @@ public class ProductController {
 
     @Autowired
     private ProductDaoService productDaoService;
+
+    private final FileSystemStorageService storageService;
+    @Autowired
+    public ProductController(FileSystemStorageService storageService) {
+        this.storageService = storageService;
+    }
 
     @GetMapping("/catalog")
     public String catalog(Model model) {
@@ -34,9 +42,17 @@ public class ProductController {
                                 @RequestParam String productName,
                                 @RequestParam String productDescription,
                                 @RequestParam double productPrice,
+                                @RequestParam("product_image") MultipartFile file,
                                 @ModelAttribute("product") Product product) {
 
+
         Product newProduct = new Product(productVendor, productName, productDescription, productPrice);
+
+        if (!file.isEmpty()) {
+            storageService.store(file);
+            newProduct.setProductImageLink("/product/images/" + file.getOriginalFilename());
+        }
+
         productDaoService.addNewProduct(newProduct);
         return "redirect:/catalog";
     }
@@ -69,6 +85,7 @@ public class ProductController {
                                 @RequestParam String productName,
                                 @RequestParam String productDescription,
                                 @RequestParam double productPrice,
+                                @RequestParam("product_image") MultipartFile file,
                                 Model model) {
 
         Product product = productDaoService.findProductById(productId);
@@ -77,8 +94,14 @@ public class ProductController {
         product.setProductDescription(productDescription);
         product.setProductPrice(productPrice);
 
+        if (!file.isEmpty()) {
+            storageService.store(file);
+            product.setProductImageLink("/product/images/" + file.getOriginalFilename());
+        }
+
         productDaoService.updateProduct(product);
 
         return "redirect:/catalog/product-{id}";
     }
+
 }
