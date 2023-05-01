@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,6 +32,9 @@ public class Product {
 
     @Column(name = "product_price")
     private double productPrice;
+
+    @Column(name = "product_image_link")
+    private String productImageLink;
 
     public Product(String productVendor, String productName, String productDescription, double productPrice) {
         this.productVendor = productVendor;
