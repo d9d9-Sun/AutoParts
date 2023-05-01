@@ -3,12 +3,13 @@
 <body>
 <div class="container">
   <h1>Редактирование товара</h1>
-  <form th:each="el : ${product}" method="post">
+  <form class="product-add-form" th:each="el : ${product}" method="post" enctype="multipart/form-data">
     <input type="text" name="productVendor" th:value="${el.productVendor}" placeholder="Производитель">
     <input type="text" name="productName" th:value="${el.productName}" placeholder="Название">
     <textarea name="productDescription" th:text="${el.productDescription}" placeholder="Описание"></textarea>
     <input type="number" name="productPrice"  th:value="${el.productPrice}" placeholder="Цена" step=".01">
-    <button type="submit">Обновить</button>
+    <label>Фото товара: <input type="file" name="product_image"></label>
+    <button type="submit">Обновить товар</button>
   </form>
 </div>
 </body>
