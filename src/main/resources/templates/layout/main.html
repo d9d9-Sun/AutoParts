@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="main (template, menu)" lang="ru">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" th:fragment="main (template, menu)"
+      lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title th:text="${title}" />
@@ -11,17 +12,25 @@
     <nav class="container">
         <a href="/">Главная</a>
         <a href="/catalog">Каталог</a>
-        <a href="/catalog/add-new-product">Добавить товар</a>
         <a href="/contacts">Контакты</a>
     </nav>
 </header>
+<section sec:authorize="hasAuthority('ADMIN')" class="admin-menu">
+    <div class="container">
+        <a href="/admin/catalog/add-new-product">Добавить товар</a>
+        <a href="/logout">Выйти</a>
+    </div>
+</section>
 <main>
     <th:block th:insert="${template}" />
 </main>
 <footer>
-    <div class="container">
-        <div class="copyright">&copy; AutoPartsStore. Все права защищены.</div>
-        <div class="manufacturer">Разработка сайта - <a href="https://mad.by">MAD.by</a></div>
+    <div class="container footer-container">
+        <div class="footer-left-block">
+            <div class="copyright">&copy; AutoPartsStore. Все права защищены.</div>
+            <div class="manufacturer">Разработка сайта - <a href="https://mad.by">MAD.by</a></div>
+        </div>
+        <div class="footer-right-block"><a href="/login">Вход для админа</a></div>
     </div>
 </footer>
 </body>
