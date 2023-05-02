@@ -25,6 +25,7 @@ header {
     background-color: #3a3a3a;
     flex: 0 0 auto;
     box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.5);
+    z-index: 50;
 }
 
 nav.container {
@@ -232,10 +233,6 @@ footer {
     flex: 0 0 auto;
 }
 
-footer .container {
-    padding: 20px 0;
-}
-
 .manufacturer a {
     color: #929292;
     text-decoration: none;
@@ -257,4 +254,41 @@ footer .container {
     border-radius: 5px;
     padding: 20px;
     font-size: 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-left-block {
+    padding: 20px 0;
+}
+
+.footer-right-block a {
+    color: #3a3a3a;
+    text-decoration: none;
+    display: block;
+    height: 100%;
+}
+
+.admin-menu {
+    z-index: 20;
+    margin-top: -30px;
+    background-color: #ccc;
+    margin-bottom: 40px;
+}
+
+.admin-menu .container {
+    padding: 20px;
+    display: flex;
+    justify-content: end;
+    gap: 50px;
+    font-family: Arial, serif;
+    font-weight: bold;
+}
+
+.admin-menu .container a {
+    color: #000;
+    text-decoration: none;
 }
