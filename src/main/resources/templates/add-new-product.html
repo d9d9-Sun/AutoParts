@@ -3,7 +3,7 @@
 <body>
 <div class="container">
     <h1>Добавление нового товара</h1>
-    <form class="product-add-form" th:action="@{/catalog/add-new-product}" th:object="${product}" method="post" enctype="multipart/form-data">
+    <form class="product-add-form" th:action="@{/admin/catalog/add-new-product}" th:object="${product}" method="post" enctype="multipart/form-data">
         <input type="text" name="product_vendor" th:field="*{productVendor}" placeholder="Производитель">
         <input type="text" name="product_name" th:field="*{productName}" placeholder="Название">
         <textarea name="product_description" th:field="*{productDescription}" placeholder="Описание"></textarea>
