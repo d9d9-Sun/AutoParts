@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout/main :: main (~{::body},'product')}" lang="ru">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{layout/main :: main (~{::body},'product')}" lang="ru">
 <body>
 <div class="container">
     <div class="info-message" th:if="${message}" th:text="${message}"/>
@@ -16,11 +17,11 @@
 
     <div class="product-description" th:text="${product.productDescription}"></div>
 
-    <div class="product-controls">
-        <a th:href="@{'/catalog/product-' + ${product.productId} + '/edit'}">
+    <div sec:authorize="hasAuthority('ADMIN')" class="product-controls">
+        <a th:href="@{'/admin/catalog/product-' + ${product.productId} + '/edit'}">
             <button>Редактировать товар</button>
         </a>
-        <form th:action="@{'/catalog/product-' + ${product.productId} + '/delete'}" method="post">
+        <form th:action="@{'/admin/catalog/product-' + ${product.productId} + '/delete'}" method="post">
             <input type="submit" value="Удалить товар">
         </form>
     </div>
