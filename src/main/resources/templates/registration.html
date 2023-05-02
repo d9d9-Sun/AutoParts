@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout/main :: main (~{::body},'/registration')}" lang="ru">
+<body>
+<div class="container">
+    <div class="info-message" th:if="${message}" th:text="${message}"/>
+    <div class="info-message" th:if="${message2}" th:text="${message2}"/>
+    <h1>Registration</h1>
+    <form action="/registration" method="post">
+        <input type="text" name="username" required="required">
+        <input type="password" name="password" required="required">
+        <input type="submit" th:value="Зарегистрироваться">
+    </form>
+</div>
+</body>
+</html>
