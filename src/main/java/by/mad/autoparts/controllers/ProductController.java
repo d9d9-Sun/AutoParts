@@ -32,13 +32,13 @@ public class ProductController {
         return "catalog";
     }
 
-    @GetMapping("/catalog/add-new-product")
+    @GetMapping("/admin/catalog/add-new-product")
     public String showAddNewProductForm(Model model, @ModelAttribute("product") Product product) {
         model.addAttribute("title", "Добавление нового товара");
         return "add-new-product";
     }
 
-    @PostMapping("/catalog/add-new-product")
+    @PostMapping("/admin/catalog/add-new-product")
     public String addNewProduct(@RequestParam String productVendor,
                                 @RequestParam String productName,
                                 @RequestParam String productDescription,
@@ -66,13 +66,13 @@ public class ProductController {
         return "product";
     }
 
-    @PostMapping("/catalog/product-{id}/delete")
+    @PostMapping("/admin/catalog/product-{id}/delete")
     public String deleteProduct(@PathVariable("id") Long productId) {
         productDaoService.deleteProductById(productId);
         return "redirect:/catalog";
     }
 
-    @PostMapping("/catalog/product-{id}/delete-image")
+    @PostMapping("/admin/catalog/product-{id}/delete-image")
     public String deleteProductImage(@PathVariable("id") Long productId,
                                      RedirectAttributes redirectAttributes) {
         Product product = productDaoService.findProductById(productId);
@@ -80,10 +80,10 @@ public class ProductController {
         productDaoService.updateProduct(product);
         redirectAttributes.addFlashAttribute("message",
                 "Фото успешно удалено!");
-        return "redirect:/catalog/product-{id}/edit";
+        return "redirect:/admin/catalog/product-{id}/edit";
     }
 
-    @GetMapping("/catalog/product-{id}/edit")
+    @GetMapping("/admin/catalog/product-{id}/edit")
     public String productEdit(@PathVariable("id") Long productId, Model model) {
         Product product = productDaoService.findProductById(productId);
         model.addAttribute("product", product);
@@ -91,7 +91,7 @@ public class ProductController {
         return "product-edit";
     }
 
-    @PostMapping("/catalog/product-{id}/edit")
+    @PostMapping("/admin/catalog/product-{id}/edit")
     public String productUpdate(@PathVariable("id") Long productId,
                                 @RequestParam String productVendor,
                                 @RequestParam String productName,
