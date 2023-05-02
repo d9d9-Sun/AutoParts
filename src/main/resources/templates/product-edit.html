@@ -8,7 +8,7 @@
 
   <div th:each="el : ${product}" th:if="${el.productImageLink != null}"  class="edit-product-img">
     <img th:src="${el.productImageLink}">
-    <form th:action="@{'/catalog/product-' + ${el.productId} + '/delete-image'}" method="post">
+    <form th:action="@{'/admin/catalog/product-' + ${el.productId} + '/delete-image'}" method="post">
       <input type="submit" value="Удалить текущее фото">
     </form>
   </div>
