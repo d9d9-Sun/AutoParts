@@ -2,6 +2,8 @@
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout/main :: main (~{::body},'product')}" lang="ru">
 <body>
 <div class="container">
+    <div class="info-message" th:if="${message}" th:text="${message}"/>
+
     <h1 th:text="${product.productName}"/>
 
     <div class="single-product-card">

@@ -40,5 +40,8 @@ public class ProductDaoServiceImpl implements ProductDaoService {
         productRepository.save(product);
     }
 
-
+    @Override
+    public void deleteProductImage(Product product) {
+        productRepository.save(product);
+    }
 }

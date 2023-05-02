@@ -10,4 +10,6 @@ public interface ProductDaoService {
     void deleteProductById(Long id);
     Product findProductById(Long id);
     void updateProduct(Product product);
+
+    void deleteProductImage(Product product);
 }

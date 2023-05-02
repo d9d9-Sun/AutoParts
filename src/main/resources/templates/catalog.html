@@ -8,7 +8,9 @@
             <div class="product-card" th:each="product : ${productList}">
                 <a th:href="@{'/catalog/product-' + ${product.productId}}">
                     <h2 th:text="${product.productName}"></h2>
-                    <div class="product-img"><img th:src="${product.productImageLink}"></div>
+                    <div class="product-img" th:if="${product.productImageLink != null}" >
+                        <img th:src="${product.productImageLink}">
+                    </div>
                     <div class="product-vendor" th:text="'Бренд: ' + ${product.productVendor}"></div>
                     <div class="product-price" th:text="${product.productPrice} + 'BYN'"></div>
                 </a>

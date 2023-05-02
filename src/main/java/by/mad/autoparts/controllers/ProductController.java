@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -71,6 +72,17 @@ public class ProductController {
         return "redirect:/catalog";
     }
 
+    @PostMapping("/catalog/product-{id}/delete-image")
+    public String deleteProductImage(@PathVariable("id") Long productId,
+                                     RedirectAttributes redirectAttributes) {
+        Product product = productDaoService.findProductById(productId);
+        product.setProductImageLink(null);
+        productDaoService.updateProduct(product);
+        redirectAttributes.addFlashAttribute("message",
+                "Фото успешно удалено!");
+        return "redirect:/catalog/product-{id}/edit";
+    }
+
     @GetMapping("/catalog/product-{id}/edit")
     public String productEdit(@PathVariable("id") Long productId, Model model) {
         Product product = productDaoService.findProductById(productId);
@@ -86,9 +98,11 @@ public class ProductController {
                                 @RequestParam String productDescription,
                                 @RequestParam double productPrice,
                                 @RequestParam("product_image") MultipartFile file,
-                                Model model) {
+                                Model model,
+                                RedirectAttributes redirectAttributes) {
 
         Product product = productDaoService.findProductById(productId);
+        model.addAttribute("product", product);
         product.setProductVendor(productVendor);
         product.setProductName(productName);
         product.setProductDescription(productDescription);
@@ -100,6 +114,9 @@ public class ProductController {
         }
 
         productDaoService.updateProduct(product);
+
+        redirectAttributes.addFlashAttribute("message",
+                "Товар успешно обновлён!");
 
         return "redirect:/catalog/product-{id}";
     }
